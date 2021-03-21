@@ -18,8 +18,13 @@
   },
   "homepage": "https://github.com/cshermans/cshermans.github.io#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.1",
+    "nodemon": "^2.0.7",
+    "session": "^0.1.0"
   }
 }
