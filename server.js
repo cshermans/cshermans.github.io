@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 const cookieParser = require('cookie-parser') 
 var session = require('express-session')
 var User = require('./models/User.js')
+var Blog = require('./models/Blog.js')
+
 
 //initialize mongo db
 var db = require('./helpers/init_mongo.js')
@@ -122,4 +124,28 @@ app.post('/logout', (req, res) => {
     }
 });
 
+app.get('/new_blog', (req, res) => {
+    res.render('new_blog.ejs')	
+})
+
+app.post('/new_blog', (req, res) => {
+    var new_blog = new Blog();
+    new_blog.text = req.body.text
+    new_blog.user = req.session.user.email
+
+    new_blog.save(function(err, savedUser) {
+        if(err) {
+           console.log(err);
+           console.log('not ok')
+           res.redirect('/dashboard')
+        }
+        console.log('ok blog submit')
+        res.redirect('/dashboard')
+        
+     })
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard.ejs')	
+})
 app.listen(9001) 
